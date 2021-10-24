@@ -1,0 +1,12 @@
+name: cda_app
+channels:
+  - conda-forge
+dependencies:
+  - pandas
+  - numpy
+  - matplotlib
+  - joblib
+  - scikit-learn
+  - pip
+  - pip:
+      - streamlit
