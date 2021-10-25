@@ -11,7 +11,8 @@ RUN pip install --upgrade pip
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY environment.yml environment2.yml .
+COPY environment.yml .
+COPY environment2.yml .
 RUN conda env create -f environment.yml
 RUN conda env create -f environment2.yml
 

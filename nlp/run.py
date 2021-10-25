@@ -1,5 +1,6 @@
 import streamlit as st
 from reviews.utils import PredictSentiment
+import reviews.utils
 #import reviews
 
 st.sidebar.header('Choose the NLP application:')
@@ -24,12 +25,10 @@ if app=='Review Analysis':
             string = "{}% Negative!:thumbsdown:".format(round(prob,2))
             cmap='OrRd'
             df_tokens.Coef = df_tokens.Coef * -1
-            #high=-10
             st.header(string)
         else: 
             string = "{}% Positive!:thumbsup:".format(round(prob,2))
             cmap='Blues'
-            #high=10
             st.header(string)
 
 if app=='Article classification':

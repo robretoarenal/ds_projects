@@ -1,4 +1,4 @@
-import os
+import sys,os
 import pathlib
 #import tarfile
 import urllib.request
@@ -129,10 +129,18 @@ class PredictSentiment(object):
     """
 
     def __init__(self):
-        #model_path = os.path.join(str(pathlib.Path().absolute()), "model")
-        #model_file = model_path + "/forest_reg.pkl"
+        #os.environ["PYTHONPATH"] = "/usr/src/nlp/reviews"
+        #print(os.environ["PYTHONPATH"])
+        try:
+            sys.path.index(os.path.join(str(pathlib.Path().absolute()), "reviews")) # Or os.getcwd() for this directory
+        except ValueError:
+            sys.path.append(os.path.join(str(pathlib.Path().absolute()), "reviews")) # Or os.getcwd() for this directory
+            
+        model_path = os.path.join(str(pathlib.Path().absolute()), "reviews/model")
+        model_file = model_path + "/logreg_tfidf.pkl"
+
         #self.model = load(open(model_file, 'rb'))
-        self.model = joblib.load("model/logreg_tfidf.pkl")
+        self.model = joblib.load(model_file)
 
     def buildDF(self, sentence):
         """Generate DataFrame with tokens and coefficients.
@@ -146,8 +154,8 @@ class PredictSentiment(object):
         tokens = SentimentTrain("Data").spacy_tokenizer(sentence[0])
         arr=[]
         for token in tokens:
-            idx = self.model.steps[1][1].vocabulary_.get(token)
-            coef = self.model.steps[2][1].coef_[0][idx]
+            idx = self.model.steps[0][1].vocabulary_.get(token)
+            coef = self.model.steps[1][1].coef_[0][idx]
             arr.append({'TOKEN':token, 'Coef':coef})
 
         return pd.DataFrame(arr)

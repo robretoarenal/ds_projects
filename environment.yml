@@ -2,10 +2,10 @@ name: nlp_app
 channels:
   - conda-forge
 dependencies:
+  - python
   - pandas
   - numpy
   - matplotlib
-  - joblib
   - scikit-learn
   - spacy
   - spacy-model-en_core_web_sm

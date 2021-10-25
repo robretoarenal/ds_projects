@@ -4,7 +4,7 @@ def main():
     """Training the model by using utils.SentimentTrain method. 
     """
 
-    t = SentimentTrain("Data").train()
+    t = SentimentTrain("data").train()
 
 if __name__ == "__main__":
     main()

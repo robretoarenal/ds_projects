@@ -2,6 +2,7 @@ name: cda_app
 channels:
   - conda-forge
 dependencies:
+  - python
   - pandas
   - numpy
   - matplotlib
