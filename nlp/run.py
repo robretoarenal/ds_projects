@@ -3,6 +3,8 @@ from reviews.utils import PredictSentiment
 import reviews.utils
 #import reviews
 
+from articles.utils_articles import countVec,lemmatize, TopicPredict
+
 st.sidebar.header('Choose the NLP application:')
 app = st.sidebar.selectbox('Select:',['Review Analysis','Article classification'])
 
@@ -32,4 +34,27 @@ if app=='Review Analysis':
             st.header(string)
 
 if app=='Article classification':
+
     st.header('Article classification')
+    
+    st.markdown("""
+        This application reads an article of your preference and predicts its class. 
+        The possible classes are: entretainment, politics, sports, business, and tech.""")
+    
+    uploaded_file = st.file_uploader("Upload your article HERE:",type=['txt'])
+    if st.button("Process"):
+        if uploaded_file is not None:
+            #file_details = {"FileName":uploaded_file.name,"FileType":uploaded_file.type,"FileSize":uploaded_file.size}
+            #st.write(file_details)
+            encoding = 'utf-8'
+            art = str(uploaded_file.read(), encoding)
+            lemma_art=lemmatize(art)
+            st.write(lemma_art)
+
+    # if st.button('Predict') and uploaded_file is not None:
+    #     TopicPredict()
+
+
+
+
+
