@@ -6,6 +6,7 @@ dependencies:
   - pandas
   - numpy
   - matplotlib
+  - seaborn
   - scikit-learn
   - spacy
   - spacy-model-en_core_web_sm
